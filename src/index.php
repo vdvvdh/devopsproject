@@ -27,3 +27,5 @@ foreach ($users as $user) {
     echo $user->name . " " . $user->fav_color;
     echo "<br>";
 }
+
+?>
