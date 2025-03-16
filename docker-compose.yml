@@ -1,4 +1,4 @@
-version: '3.1'
+version : '3.1'
 
 services:
   php:
@@ -8,15 +8,7 @@ services:
     ports:
       - 80:80
     volumes:
-      - ./src:/var/www/html/
-    depends_on:
-      - db
-    environment:
-      DB_HOST: db
-      DB_USER: root
-      DB_PASSWORD: example
-    networks:
-      - app-network
+      - ./src:var/www/html/
 
   db:
     image: mysql
@@ -24,22 +16,14 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: example
-      MYSQL_DATABASE: mydb
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
-    networks:
-      - app-network
-
+    volumes:
+      - mysql-data:/var/lib/mysql
+  
   adminer:
     image: adminer
     restart: always
     ports:
       - 8080:8080
-    depends_on:
-      - db
-    networks:
-      - app-network
 
-networks:
-  app-network:
-    driver: bridge
+volumes:
+  mysql-data:
