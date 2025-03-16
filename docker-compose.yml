@@ -16,6 +16,7 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: company1
     volumes:
       - mysql-data:/var/lib/mysql
 
