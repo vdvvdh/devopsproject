@@ -28,3 +28,14 @@ services:
 
 volumes:
   mysql-data:
+
+networks:
+  mynetwork:
+
+services:
+  php:
+    networks:
+      - mynetwork
+  db:
+    networks:
+      - mynetwork
