@@ -9,6 +9,8 @@ services:
       - 80:80
     volumes:
       - ./src:/var/www/html/
+    networks:
+      - mynetwork
 
   db:
     image: mysql
@@ -16,14 +18,22 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: company1
     volumes:
       - mysql-data:/var/lib/mysql
+    networks:
+      - mynetwork
 
   adminer:
     image: adminer
     restart: always
     ports:
       - 8080:8080
+    networks:
+      - mynetwork
 
 volumes:
   mysql-data:
+
+networks:
+  mynetwork:
